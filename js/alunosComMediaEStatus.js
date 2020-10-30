@@ -32,13 +32,27 @@ function definirStatus(media = 0) {
   return media < 7 ? "reprovado" : "aprovado";
 }
 
-const listaAlunosComMediaEStatus = () => listaAlunos.map((aluno) => {
-  const media = calcularMedia(aluno.notas);
-  const status = definirStatus(media);
-  const alunoComMediaEStatus = {
-    nome: aluno.nome,
-    media: media,
-    status: status,
-  };
-  return alunoComMediaEStatus;
-});
+const listaAlunosComMediaEStatus = () =>
+  listaAlunos.map((aluno) => {
+    const media = calcularMedia(aluno.notas);
+    const status = definirStatus(media);
+    const alunoComMediaEStatus = {
+      nome: aluno.nome,
+      media: media,
+      status: status,
+    };
+    return alunoComMediaEStatus;
+  });
+
+function pintaTabela() {
+  var div = document.querySelectorAll("td.td-body").forEach((item) => {
+    const c = item.childNodes;
+    for (var i = 0; i < c.length; i++) {
+      if (c[i].nodeValue == "reprovado") {
+        item.style.backgroundColor = "red";
+      } else {
+        item.style.backgroundColor = "green";
+      }
+    }
+  });
+}
